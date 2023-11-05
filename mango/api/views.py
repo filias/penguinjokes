@@ -1,3 +1,12 @@
-from django.shortcuts import render
+import requests
+from rest_framework.response import Response
 
-# Create your views here.
+from rest_framework.views import APIView
+
+
+class GetJokeView(APIView):
+    def get(self, request, *args, **kwargs):
+        """Get a joke"""
+        response = requests.get("https://icanhazdadjoke.com/", headers={"Accept": "application/json"})
+        joke = response.json()["joke"]
+        return Response(data=joke)
