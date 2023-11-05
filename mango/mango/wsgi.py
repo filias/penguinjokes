@@ -10,7 +10,8 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
+from dotenv import load_dotenv
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mango.settings')
+load_dotenv()  # Automatically loads the .env file
 
 application = get_wsgi_application()
