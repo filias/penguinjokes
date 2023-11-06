@@ -1,4 +1,5 @@
 import requests
+from django.http import HttpResponse
 from rest_framework.response import Response
 
 from rest_framework.views import APIView
@@ -9,4 +10,4 @@ class GetJokeView(APIView):
         """Get a joke"""
         response = requests.get("https://icanhazdadjoke.com/", headers={"Accept": "application/json"})
         joke = response.json()["joke"]
-        return Response(data=joke)
+        return HttpResponse(joke)
