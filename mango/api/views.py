@@ -1,11 +1,9 @@
 import requests
 from django.http import HttpResponse
-from rest_framework.response import Response
-
-from rest_framework.views import APIView
+from django.views import View
 
 
-class GetJokeView(APIView):
+class GetJokeView(View):
     def get(self, request, *args, **kwargs):
         """Get a joke"""
         response = requests.get("https://icanhazdadjoke.com/", headers={"Accept": "application/json"})
