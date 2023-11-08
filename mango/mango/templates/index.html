@@ -1,16 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <script src="https://unpkg.com/htmx.org@1.9.6"
-        integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Penguin Jokes</title>
-</head>
-
+{% block content %}
 <body class="dark:bg-slate-800">
     <div id="space" class="p-10 space-x-12 mx-auto bg-white"></div>
 
@@ -27,21 +18,8 @@
     <button hx-get="{{api_url}}/api/jokes" htmx-target="#joke-results"
         class="p-6 bg-slate-200 rounded-xl shadow-lg max-w-sm mx-auto flex items-center space-x-12">
         Click Me!
-
     </button>
 
-    <!-- <footer class="max-w-xs mx-auto flex items-center space-x-4 text-xs">
-        <a href="https://www.flaticon.com/free-icons/joke" title="joke icons">Joke icons created by
-            Freepik - Flaticon</a>
-    </footer> -->
 </body>
-
 </html>
-
-<!-- 
-    <div id="joke-results">
-    </div>
-    <button hx-get="{{api_url}}/api/jokes"
-            htmx-target="#joke-results">
-        Get a joke
-    </button> -->
+{% endblock %}
