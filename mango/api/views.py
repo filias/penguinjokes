@@ -15,6 +15,7 @@ class GetJokeView(View):
             question = f"{split_joke[0]} ?"
             answer = split_joke[1]
         else:
+            question = joke
             answer = ""
 
         return HttpResponse(f'<div id="joke-1" class="text-xl font-medium text-black" hx-swap-oob="true">{question}<div>'
