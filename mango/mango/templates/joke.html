@@ -1,0 +1,33 @@
+{% load static %}
+
+<div
+    id="joke" 
+    class="w-1/4 p-mx-auto bg-white rounded-xl shadow-lg px-6 py-4 gap-4 relative"
+    x-data="{ answer: false }"
+    x-init="() => {
+      setTimeout(() => { answer = true; }, 2000);
+    }"
+  >
+    <img 
+      class="img-thinking w-24 absolute left-[-60px] top-[-60px]" 
+      src="{% static 'img/happy.svg' %}"
+      x-show="answer"
+    >
+
+    <img 
+      class="img-thinking w-24 absolute left-[-60px] top-[-60px]" 
+      src="{% static 'img/thinking.svg' %}"
+      x-show="!answer"
+    >
+
+    <div class="text-xl font-medium text-black">
+      <div>{{ question }}</div>
+      <div class="text-slate-500 answer mt-5" x-show="answer === true">{{ answer }}</div>
+    </div>
+
+</div>
+
+<button hx-get="/" hx-target="#joke" hx-swap="outerHTML" hx-indicator="#loader" x-show="answer" 
+    class="px-4 py-2 bg-slate-200 rounded-full shadow-lg max-w-sm mx-auto flex items-center space-x-12 text-2xl">
+    Laugh again!
+</button>

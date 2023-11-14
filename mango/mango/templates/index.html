@@ -1,23 +1,11 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
-<body class="dark:bg-slate-800">
-    <div id="space" class="p-10 space-x-12 mx-auto bg-white"></div>
 
-    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-        <div class="shrink-0">
-            <img class="h-12 w-12" src="{% static 'img/joke.png' %}" alt="ChitChat Logo">
-        </div>
-        <div>
-            <div id="joke-1" class="text-xl font-medium text-black" hx-trigger="load" hx-get="{{api_url}}/api/jokes"></div>
-        </div>
-    </div>
+<body class="dark:bg-slate-800 w-screen h-screen flex flex-col items-center justify-center gap-4">
 
-    <button hx-get="{{api_url}}/api/jokes" hx-target="#joke-1"
-        class="p-6 bg-slate-200 rounded-xl shadow-lg max-w-sm mx-auto flex items-center space-x-12">
-        Get a joke!
-    </button>
+    <!-- include the joke fragment -->
+    {% include 'joke.html' %}
 
 </body>
 </html>
