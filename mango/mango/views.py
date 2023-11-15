@@ -1,3 +1,5 @@
+import re
+
 import requests
 from django.views.generic import TemplateView
 
@@ -14,8 +16,8 @@ def get_joke():
         return get_joke()
 
     # split the joke into question and answer
-    question, answer = joke.split("?")
-    return f"{question}?", answer
+    question, answer = re.split(r'(?<=\?)', joke)
+    return question, answer
 
 
 class IndexView(TemplateView):
