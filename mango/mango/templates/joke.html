@@ -2,20 +2,20 @@
 
 <div
     id="joke" 
-    class="w-1/4 p-mx-auto bg-white rounded-xl shadow-lg px-6 py-4 gap-4 relative"
+    class="max-w-sm p-mx-auto bg-white rounded-xl shadow-lg px-6 py-4 gap-4 relative"
     x-data="{ answer: false }"
     x-init="() => {
       setTimeout(() => { answer = true; }, 2000);
     }"
   >
     <img 
-      class="img-thinking w-24 absolute left-[-60px] top-[-60px]" 
+      class="img-thinking w-20 absolute left-[-50px] top-[-50px]" 
       src="{% static 'img/happy.svg' %}"
       x-show="answer"
     >
 
     <img 
-      class="img-thinking w-24 absolute left-[-60px] top-[-60px]" 
+      class="img-thinking w-20 absolute left-[-50px] top-[-50px]" 
       src="{% static 'img/thinking.svg' %}"
       x-show="!answer"
     >
