@@ -9,6 +9,30 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
+
+    <script type="module">
+      import "https://js.supertab.co/v1/tab.js";
+      window.supertab.createPurchaseButton({
+        containerElement: document.getElementById("button-container"),
+        clientId: "client.99a96b49-08c1-4507-a893-4ac8f8d5d0f7",
+        merchantName: "Penguin Jokes",
+        merchantLogoUrl: "",
+        offeringId: "offering.3b0287fe-cf06-4d8d-a0f5-9b00a8eecb71", // optional
+        onPurchaseCompleted: () => {
+          //insert your code to grant user access
+          console.log("Purchase completed!");
+        },
+        onPurchaseCanceled: () => {
+          //insert your code to handle when purchase is not completed
+          console.log("Purchase canceled!");
+        },
+        onError: () => {
+          //insert your code to handle an unexpected error
+          console.log("Purchase error!");
+        },
+      });
+    </script>
+
     <title>Penguin Jokes</title>
 </head>
 
