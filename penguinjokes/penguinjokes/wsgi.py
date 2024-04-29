@@ -1,5 +1,5 @@
 """
-WSGI config for mango project.
+WSGI config for penguinjokes project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

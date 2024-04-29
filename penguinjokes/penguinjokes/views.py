@@ -16,7 +16,7 @@ def get_joke():
         return get_joke()
 
     # split the joke into question and answer
-    question, answer = re.split(r'(?<=\?)', joke)
+    question, answer = re.split(r"(?<=\?)", joke)
     return question, answer
 
 
