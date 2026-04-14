@@ -6,7 +6,7 @@ from pathlib import Path
 from openai import OpenAI
 import requests
 
-from models import save_joke, get_joke_by_id
+from models import save_joke, get_joke_by_id, update_joke_explanation, update_joke_image
 
 JOKES_API_URL = "https://icanhazdadjoke.com/"
 VOICES = ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]
@@ -35,12 +35,17 @@ def explain_joke(joke: str, joke_id: str = None) -> str:
             return db_joke.explanation
 
     response = openai_client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4o-mini",
         messages=[
             {"role": "user", "content": f"Explain the joke: {joke}"},
         ],
     )
-    return response.choices[0].message.content.strip()
+    explanation = response.choices[0].message.content.strip()
+
+    if joke_id:
+        update_joke_explanation(joke_id, explanation)
+
+    return explanation
 
 
 def read_joke(joke: str) -> str:
@@ -58,7 +63,17 @@ def read_joke(joke: str) -> str:
 
 
 def draw_joke(joke: str, joke_id: str = None) -> str:
+    if joke_id:
+        db_joke = get_joke_by_id(joke_id=joke_id)
+        if db_joke and db_joke.image:
+            return db_joke.image
+
     response = openai_client.images.generate(
-        model="dall-e-3", prompt=joke, size="1024x1024", quality="standard", n=1
+        model="dall-e-3", prompt=joke, size="512x512", quality="standard", n=1
     )
-    return response.data[0].url
+    image_url = response.data[0].url
+
+    if joke_id:
+        update_joke_image(joke_id, image_url)
+
+    return image_url
