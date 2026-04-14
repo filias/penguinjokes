@@ -71,9 +71,17 @@ def draw_joke(joke: str, joke_id: str = None) -> str:
     response = openai_client.images.generate(
         model="dall-e-3", prompt=joke, size="512x512", quality="standard", n=1
     )
-    image_url = response.data[0].url
 
+    # Download and save locally so the URL doesn't expire
+    image_data = requests.get(response.data[0].url).content
+    filename = f"{uuid.uuid4().hex}.png"
+    image_path = Path("static/images") / filename
+    image_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(image_path, "wb") as f:
+        f.write(image_data)
+
+    local_url = f"/static/images/{filename}"
     if joke_id:
-        update_joke_image(joke_id, image_url)
+        update_joke_image(joke_id, local_url)
 
-    return image_url
+    return local_url
