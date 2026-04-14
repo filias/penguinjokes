@@ -1,3 +1,0 @@
-License: https://www.penguinjokes.lol/license.xml
-User-agent: *
-Allow: /

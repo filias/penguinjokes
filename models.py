@@ -56,9 +56,9 @@ def save_joke(question: str, answer: str) -> str:
     return joke_id
 
 
-def update_joke_image(joked_id: str, image: str = None):
+def update_joke_image(joke_id: str, image: str = None):
     with Session(engine) as session:
-        statement = select(Joke).where(Joke.id == joked_id)
+        statement = select(Joke).where(Joke.id == joke_id)
         results = session.exec(statement)
         joke = results.first()
         joke.image = image
@@ -66,9 +66,9 @@ def update_joke_image(joked_id: str, image: str = None):
         session.commit()
 
 
-def update_joke_explanation(joked_id: str, explanation: str = None):
+def update_joke_explanation(joke_id: str, explanation: str = None):
     with Session(engine) as session:
-        statement = select(Joke).where(Joke.id == joked_id)
+        statement = select(Joke).where(Joke.id == joke_id)
         results = session.exec(statement)
         joke = results.first()
         joke.explanation = explanation

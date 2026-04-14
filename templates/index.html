@@ -4,60 +4,6 @@
 <body
     class="bg-[url('/static/img/penguin-background.webp')] bg-cover w-screen h-screen flex flex-col items-center justify-center gap-4">
 
-    <script>
-        window.addEventListener('load', function() {
-        console.log('Everything is fully loaded!');
-        showJoke();
-        showElement("joke-button");
-        showElement("explanation-button");
-        showElement("draw-button");
-        showElement("read-button");
-        });
-
-        async function getJoke2() {
-            console.log("Get joke");
-            var url = "{{ api_url }}" + "/laugh";
-            console.log("URL: " + url);
-            const response = await fetch(url);
-            const data = await response.json();
-            console.log(data);
-            return data["joke"];
-        }
-
-        async function explainJoke(joke) {
-            console.log("Explain joke: " + joke);
-            const safeJoke = encodeURIComponent(joke);
-            var url = "{{ api_url }}" + "/explain?" + "joke=" + safeJoke;
-            console.log("URL: " + url);
-            const response = await fetch(url);
-            const data = await response.json();
-            console.log(data);
-            return data["text"];
-        }
-
-        async function readJoke(joke) {
-            console.log("Read joke: " + joke);
-            const safeJoke = encodeURIComponent(joke);
-            var url = "{{ api_url }}" + "/read?joke=" + safeJoke;
-            console.log("URL: " + url);
-            const response = await fetch(url);
-            const data = await response.json();
-            console.log(data);
-            return data["audio_path"];
-        }
-
-        async function drawJoke(joke) {
-            console.log("Draw joke: " + joke);
-            const safeJoke = encodeURIComponent(joke);
-            var url = "{{ api_url }}" + "/draw?joke=" + safeJoke;
-            console.log("URL: " + url);
-            const response = await fetch(url);
-            const data = await response.json();
-            console.log(data);
-            return data["image_url"];
-        }
-    </script>
-
     {% include "joke.html" %}
 </body>
 {% endblock %}

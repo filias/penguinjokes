@@ -1,29 +1,20 @@
-# hackathon-mwe
-Hackathon minimum working example
+# Penguin Jokes
 
-## System dependencies
+AI-powered dad jokes. Fetch a random joke, have GPT explain it, hear it read aloud, or see an AI-generated illustration.
 
-We need the following system dependencies:
-- Python 3.11.
+Live at [penguinjokes.lol](https://penguinjokes.lol)
 
-To install them in macOS:
+## Setup
 
-```
-$ brew install python@3.11
-```
-
-## Python dependencies
-
-Create, activate a virtualenv and install the dependencies:
-
-```
-$ python3.11 -m venv .venv
-$ source .venv/bin/activate
-$ pip install -r requirements.txt
+```bash
+uv sync
+cp .env.example .env  # add your OPENAI_API_KEY
+uv run python app.py
 ```
 
-## Run the flask app
+## How it works
 
-``` 
-$ python3 app.py
-```
+- Jokes come from [icanhazdadjoke.com](https://icanhazdadjoke.com/)
+- **Explain** uses GPT-4o
+- **Read** uses OpenAI TTS
+- **Draw** uses DALL-E 3

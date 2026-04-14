@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="{{ url_for('static', filename='js/paygate.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jokes.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/posthog.js') }}"></script>
     <link rel="icon" type="image/x-icon" sizes="32x32" href="{{ url_for('static', filename='img/favicon.ico')}}">
     <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest')}}">
 
@@ -18,10 +16,5 @@
 
 {% block content %}
 {% endblock %}
-
-<div class="fixed bottom-0 left-0 w-full bg-slate-800 text-white text-center p-2">
-    <p>Powered by <a href="https://www.supertab.co"
-            class="text-indigo-200 hover:underline text-lg font-sans">Supertab</a></p>
-</div>
 
 </html>
