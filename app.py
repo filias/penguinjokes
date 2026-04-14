@@ -1,11 +1,10 @@
-import os
 import subprocess
 from urllib.parse import unquote
 
-from flask import Flask, render_template, request
 from dotenv import load_dotenv
+from flask import Flask, render_template, request
 
-from logic import explain_joke, get_joke, read_joke, draw_joke
+from logic import draw_joke, explain_joke, get_joke, read_joke
 
 load_dotenv()
 

@@ -1,5 +1,4 @@
 import os
-from typing import Optional
 from uuid import uuid4
 
 from sqlalchemy import func
@@ -15,9 +14,9 @@ class Joke(SQLModel, table=True):
 
     id: str = Field(default=str(uuid4()), primary_key=True)
     question: str = Field(index=True, nullable=False, unique=True)
-    answer: Optional[str] = None
-    explanation: Optional[str] = None
-    image: Optional[str] = None
+    answer: str | None = None
+    explanation: str | None = None
+    image: str | None = None
 
 
 def get_random_joke() -> Joke:

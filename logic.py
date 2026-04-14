@@ -3,14 +3,21 @@ import re
 import uuid
 from pathlib import Path
 
-from openai import OpenAI
 import requests
+from openai import OpenAI
 
-from models import save_joke, get_joke_by_id, update_joke_explanation, update_joke_image
+from models import get_joke_by_id, save_joke, update_joke_explanation, update_joke_image
 
 JOKES_API_URL = "https://icanhazdadjoke.com/"
 VOICES = ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]
-openai_client = OpenAI()
+_openai_client = None
+
+
+def _get_openai():
+    global _openai_client
+    if _openai_client is None:
+        _openai_client = OpenAI()
+    return _openai_client
 
 
 def get_joke() -> tuple[str, str, str]:
@@ -34,7 +41,7 @@ def explain_joke(joke: str, joke_id: str = None) -> str:
         if db_joke and db_joke.explanation:
             return db_joke.explanation
 
-    response = openai_client.chat.completions.create(
+    response = _get_openai().chat.completions.create(
         model="gpt-4o-mini",
         messages=[
             {"role": "user", "content": f"Explain the joke: {joke}"},
@@ -51,7 +58,7 @@ def explain_joke(joke: str, joke_id: str = None) -> str:
 def read_joke(joke: str, voice: str = "random") -> str:
     if voice == "random" or voice not in VOICES:
         voice = random.choice(VOICES)
-    response = openai_client.audio.speech.create(model="tts-1", voice=voice, input=joke)
+    response = _get_openai().audio.speech.create(model="tts-1", voice=voice, input=joke)
 
     filename = f"{uuid.uuid4().hex}.mp3"
     audio_path = Path("static/audio") / filename
@@ -69,7 +76,7 @@ def draw_joke(joke: str, joke_id: str = None) -> str:
         if db_joke and db_joke.image:
             return db_joke.image
 
-    response = openai_client.images.generate(
+    response = _get_openai().images.generate(
         model="dall-e-3", prompt=joke, size="1024x1024", quality="standard", n=1
     )
 

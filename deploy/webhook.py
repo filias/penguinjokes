@@ -37,7 +37,8 @@ def deploy():
         [
             "bash",
             "-c",
-            "cd /opt/penguinjokes && git pull && uv sync && systemctl restart penguinjokes",
+            "cd /opt/penguinjokes && git pull"
+            " && uv sync && systemctl restart penguinjokes",
         ],
     )
     return "deploying", 200

@@ -15,6 +15,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pytest>=8",
     "ruff>=0.6",
 ]
 
@@ -26,3 +27,12 @@ build-backend = "hatchling.build"
 packages = ["."]
 only-include = ["app.py", "logic.py", "models.py"]
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
