@@ -70,7 +70,7 @@ def draw_joke(joke: str, joke_id: str = None) -> str:
             return db_joke.image
 
     response = openai_client.images.generate(
-        model="dall-e-3", prompt=joke, size="512x512", quality="standard", n=1
+        model="dall-e-3", prompt=joke, size="1024x1024", quality="standard", n=1
     )
 
     # Download and save locally so the URL doesn't expire
