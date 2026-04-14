@@ -1,4 +1,5 @@
 import os
+import subprocess
 from urllib.parse import unquote
 
 from flask import Flask, render_template, request
@@ -9,6 +10,17 @@ from logic import explain_joke, get_joke, read_joke, draw_joke
 load_dotenv()
 
 app = Flask(__name__)
+
+try:
+    GIT_VERSION = (
+        subprocess.check_output(
+            ["git", "rev-parse", "--short", "HEAD"], stderr=subprocess.DEVNULL
+        )
+        .decode()
+        .strip()
+    )
+except Exception:
+    GIT_VERSION = "dev"
 
 
 @app.route("/")
@@ -54,7 +66,7 @@ def draw():
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    return render_template("about.html", version=GIT_VERSION)
 
 
 if __name__ == "__main__":

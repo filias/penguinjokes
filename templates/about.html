@@ -9,13 +9,22 @@
             Hit <strong>Laugh</strong> for a new joke, <strong>Explain</strong> to have GPT break down why it's funny,
             <strong>Read</strong> to hear it out loud, or <strong>Draw</strong> to see an AI illustration of the joke.
         </p>
-        <p class="text-lg text-slate-300 mb-6">
+        <p class="text-lg text-slate-300 mb-4">
             Jokes come from <a href="https://icanhazdadjoke.com/" class="text-indigo-300 hover:underline" target="_blank" rel="noopener">icanhazdadjoke.com</a>.
             Explanations, voice, and images are powered by OpenAI.
         </p>
-        <a href="/" class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-6 rounded-lg transition">
-            Back to Jokes
-        </a>
+        <p class="text-lg text-slate-300 mb-6">
+            Also check out <a href="https://memi.click" class="text-indigo-300 hover:underline" target="_blank" rel="noopener">memi</a>,
+            a memory card game to practise your knowledge with images.
+        </p>
+        <div class="flex gap-4 items-center">
+            <a href="/" class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-6 rounded-lg transition">
+                Back to Jokes
+            </a>
+            <a href="https://github.com/sponsors/filias" target="_blank" rel="noopener"
+                class="text-slate-400 hover:text-pink-300 transition">&#9825; sponsor</a>
+        </div>
+        <p class="text-xs text-slate-600 mt-8">{{ version }}</p>
     </div>
 </body>
 {% endblock %}
