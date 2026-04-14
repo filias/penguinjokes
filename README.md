@@ -18,3 +18,4 @@ uv run python app.py
 - **Explain** uses GPT-4o
 - **Read** uses OpenAI TTS
 - **Draw** uses DALL-E 3
+
