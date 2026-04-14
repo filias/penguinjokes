@@ -4,6 +4,15 @@ AI-powered dad jokes. Fetch a random joke, have GPT explain it, hear it read alo
 
 Live at [penguinjokes.lol](https://penguinjokes.lol)
 
+## Features
+
+- **Laugh** — fetch a random dad joke from [icanhazdadjoke.com](https://icanhazdadjoke.com/)
+- **Explain** — GPT-4o-mini breaks down why the joke is funny
+- **Read** — OpenAI TTS reads the joke aloud with a random voice
+- **Draw** — DALL-E 3 generates an illustration of the joke
+
+Explanations and images are cached in SQLite so repeat requests are instant.
+
 ## Setup
 
 ```bash
@@ -12,10 +21,9 @@ cp .env.example .env  # add your OPENAI_API_KEY
 uv run python app.py
 ```
 
-## How it works
+## Stack
 
-- Jokes come from [icanhazdadjoke.com](https://icanhazdadjoke.com/)
-- **Explain** uses GPT-4o
-- **Read** uses OpenAI TTS
-- **Draw** uses DALL-E 3
-
+- Flask + Jinja2
+- OpenAI API (GPT-4o-mini, TTS-1, DALL-E 3)
+- SQLite via SQLModel
+- Tailwind CSS
