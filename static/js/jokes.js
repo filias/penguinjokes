@@ -99,9 +99,11 @@ async function getImage() {
         const safeJoke = encodeURIComponent(joke.innerText);
         const response = await fetch("/draw?joke=" + safeJoke);
         const data = await response.json();
-        hideLoadingScreen();
         image.src = data["image_url"];
+        await new Promise(resolve => { image.onload = resolve; });
+        hideLoadingScreen();
+        showElement("image-explanation");
+    } else {
+        toggleElementById("image-explanation");
     }
-
-    toggleElementById("image-explanation");
 }
