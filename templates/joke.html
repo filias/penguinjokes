@@ -22,10 +22,22 @@
     </button>
 
     <audio id="joke-audio" class="hidden"></audio>
-    <button onclick="getAudio()"
-      class="px-6 py-3 bg-red-500 text-white font-semibold rounded-full shadow transition duration-200 ease-in-out hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
-      Read
-    </button>
+    <div class="relative inline-block">
+      <button onclick="getAudio()"
+        class="px-6 py-3 bg-red-500 text-white font-semibold rounded-full shadow transition duration-200 ease-in-out hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+        Read
+      </button>
+      <select id="voice-select" onchange="clearAudio()"
+        class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs bg-white/80 text-slate-600 rounded px-1 py-0.5 cursor-pointer border border-slate-300">
+        <option value="random">random</option>
+        <option value="alloy">alloy</option>
+        <option value="echo">echo</option>
+        <option value="fable">fable</option>
+        <option value="onyx">onyx</option>
+        <option value="nova">nova</option>
+        <option value="shimmer">shimmer</option>
+      </select>
+    </div>
 
     <button onclick="getImage()"
       class="px-6 py-3 bg-violet-500 text-white font-semibold rounded-full shadow transition duration-200 ease-in-out hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50">

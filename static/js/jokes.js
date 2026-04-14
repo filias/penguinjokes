@@ -70,6 +70,10 @@ async function getExplanation() {
     toggleElementById("joke-explanation");
 }
 
+function clearAudio() {
+    document.getElementById("joke-audio").src = "";
+}
+
 async function getAudio() {
     let joke = document.getElementById("joke-full");
     let audio = document.getElementById("joke-audio");
@@ -77,7 +81,8 @@ async function getAudio() {
     if (joke && (!audio.src || audio.src === window.location.href)) {
         showLoadingScreen();
         const safeJoke = encodeURIComponent(joke.innerText);
-        const response = await fetch("/read?joke=" + safeJoke);
+        const voice = document.getElementById("voice-select").value;
+        const response = await fetch("/read?joke=" + safeJoke + "&voice=" + voice);
         const data = await response.json();
         hideLoadingScreen();
         audio.src = data["audio_path"];

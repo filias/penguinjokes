@@ -52,7 +52,8 @@ def explain():
 @app.route("/read")
 def read():
     joke = unquote(request.args.get("joke", ""))
-    audio_path = read_joke(joke)
+    voice = request.args.get("voice", "random")
+    audio_path = read_joke(joke, voice=voice)
     return {"audio_path": str(audio_path)}, 200
 
 

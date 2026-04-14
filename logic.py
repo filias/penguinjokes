@@ -48,8 +48,9 @@ def explain_joke(joke: str, joke_id: str = None) -> str:
     return explanation
 
 
-def read_joke(joke: str) -> str:
-    voice = random.choice(VOICES)
+def read_joke(joke: str, voice: str = "random") -> str:
+    if voice == "random" or voice not in VOICES:
+        voice = random.choice(VOICES)
     response = openai_client.audio.speech.create(model="tts-1", voice=voice, input=joke)
 
     filename = f"{uuid.uuid4().hex}.mp3"
