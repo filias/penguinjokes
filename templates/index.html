@@ -2,7 +2,9 @@
 
 {% block content %}
 <body
-    class="bg-[url('/static/img/penguin-background.webp')] bg-cover w-screen min-h-screen flex flex-col items-center justify-center gap-4 py-8">
+    class="bg-[url('/static/img/penguin-background.webp')] bg-cover w-screen min-h-screen flex flex-col items-center justify-center gap-4 py-8 relative">
+    <div class="absolute inset-0 bg-white/40"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center gap-4 w-full min-h-screen py-8">
 
     <div class="fixed top-4 right-4 flex gap-4 text-sm z-40 bg-black/50 rounded-full px-4 py-2">
         <a href="https://github.com/sponsors/filias" target="_blank" rel="noopener"
@@ -11,5 +13,6 @@
     </div>
 
     {% include "joke.html" %}
+    </div>
 </body>
 {% endblock %}
