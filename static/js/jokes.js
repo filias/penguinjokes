@@ -39,6 +39,7 @@ async function countJokes2() {
     document.getElementById("joke-answer").innerText = "";
     document.getElementById("explanation").innerText = "";
     document.getElementById("joke-image").src = "";
+    delete document.getElementById("joke-image").dataset.loaded;
     document.getElementById("joke-audio").src = "";
     hideElement("joke-explanation");
     hideElement("image-explanation");
@@ -99,13 +100,14 @@ async function getImage() {
     let joke = document.getElementById("joke-full");
     let image = document.getElementById("joke-image");
 
-    if (joke && !image.src) {
+    if (joke && !image.dataset.loaded) {
         showLoadingScreen();
         const safeJoke = encodeURIComponent(joke.innerText);
         const response = await fetch("/draw?joke=" + safeJoke);
         const data = await response.json();
         image.src = data["image_url"];
         await new Promise(resolve => { image.onload = resolve; });
+        image.dataset.loaded = "1";
         hideLoadingScreen();
         showElement("image-explanation");
     } else {
