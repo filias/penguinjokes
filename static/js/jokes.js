@@ -20,7 +20,32 @@ function hideLoadingScreen() {
 
 function swapJoke(question, answer) {
     document.getElementById("joke-question").innerText = question;
-    document.getElementById("joke-answer").innerText = answer;
+    let answerEl = document.getElementById("joke-answer");
+    answerEl.innerText = answer;
+
+    let revealBtn = document.getElementById("reveal-btn");
+    if (answer && answer.trim()) {
+        answerEl.classList.add("hidden");
+        if (!revealBtn) {
+            revealBtn = document.createElement("button");
+            revealBtn.id = "reveal-btn";
+            revealBtn.onclick = revealAnswer;
+            revealBtn.className = "mt-4 px-4 py-2 bg-amber-400 text-white text-sm font-semibold rounded-full shadow hover:bg-amber-500 transition";
+            revealBtn.textContent = "Reveal";
+            answerEl.parentElement.appendChild(revealBtn);
+        } else {
+            revealBtn.classList.remove("hidden");
+        }
+    } else {
+        answerEl.classList.remove("hidden");
+        if (revealBtn) revealBtn.classList.add("hidden");
+    }
+}
+
+function revealAnswer() {
+    showElement("joke-answer");
+    let btn = document.getElementById("reveal-btn");
+    if (btn) btn.classList.add("hidden");
 }
 
 function splitJoke(joke) {
